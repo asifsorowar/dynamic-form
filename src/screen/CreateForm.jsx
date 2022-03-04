@@ -22,8 +22,6 @@ const CreateForm = () => {
       });
   }, [params.id]);
 
-  console.log(state.selectedRow);
-
   const [name, setName] = useState(state.selectedRow?.name || "");
   const [feedBackMessage, setFeedBackMessage] = useState(
     state.selectedRow?.message || ""
