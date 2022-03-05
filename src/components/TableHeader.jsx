@@ -51,26 +51,30 @@ const TableHeader = ({ columns, sortColumn, setSortColumn }) => {
   return (
     <thead className="bg-gray-50 dark:bg-gray-700">
       <tr>
-        {Object.keys(columns)?.map((column) => (
-          <th
-            scope="col"
-            className={
-              "py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400" +
-              `${columns[column].searchable ? " cursor-pointer" : ""}`
-            }
-            onClick={() =>
-              columns[column].searchable
-                ? raiseSort(columns[column].title, column)
-                : null
-            }
-            key={column}
-          >
-            <div className="flex justify-center items-center">
-              {columns[column].title}{" "}
-              {columns[column].searchable && renderSortColumn(columns[column])}
-            </div>
-          </th>
-        ))}
+        {Object.keys(columns)?.map(
+          (column) =>
+            !columns[column].hidden && (
+              <th
+                scope="col"
+                className={
+                  "py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400" +
+                  `${columns[column].searchable ? " cursor-pointer" : ""}`
+                }
+                onClick={() =>
+                  columns[column].searchable
+                    ? raiseSort(columns[column].title, column)
+                    : null
+                }
+                key={column}
+              >
+                <div className="flex justify-center items-center">
+                  {columns[column].title}{" "}
+                  {columns[column].searchable &&
+                    renderSortColumn(columns[column])}
+                </div>
+              </th>
+            )
+        )}
       </tr>
     </thead>
   );

@@ -1,0 +1,5 @@
+1. extract the rar file.
+2. go to the file directory.
+3. open powershell or cmd to the file directory and type:
+4. npm i (for installing all dependencies).
+5. npm start (for running the project).

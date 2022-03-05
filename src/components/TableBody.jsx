@@ -26,17 +26,25 @@ const TableBody = ({ data, columns, handleClick }) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  {Object.keys(columns)?.map((column) => (
-                    <td
-                      className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      key={column + item.id}
-                      onClick={
-                        columns[column].content ? () => handleClick(item) : null
-                      }
-                    >
-                      {renderCell(item, { ...columns[column], path: column })}
-                    </td>
-                  ))}
+                  {Object.keys(columns)?.map(
+                    (column) =>
+                      !columns[column].hidden && (
+                        <td
+                          className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          key={column + item.id}
+                          onClick={
+                            columns[column].content
+                              ? () => handleClick(item)
+                              : null
+                          }
+                        >
+                          {renderCell(item, {
+                            ...columns[column],
+                            path: column,
+                          })}
+                        </td>
+                      )
+                  )}
                 </tr>
               )}
             </Draggable>
