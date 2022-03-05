@@ -24,12 +24,18 @@ const List = () => {
 
   useEffect(() => {
     let newRows = [...state.allRows];
-    let filteredRows = newRows.filter(
-      (row) =>
-        row.id.toString().toLowerCase().startsWith(searchValue.toLowerCase()) ||
-        row.name.toLowerCase().startsWith(searchValue.toLowerCase()) ||
-        row.created_at.toLowerCase().startsWith(searchValue.toLowerCase())
-    );
+    let columns = { ...state.headers };
+
+    let filteredRows = newRows.filter((row) => {
+      for (let column in columns) {
+        let isMatched = row[column]
+          ?.toString()
+          .toLowerCase()
+          .startsWith(searchValue.toLowerCase());
+
+        if (columns[column].searchable && isMatched) return true;
+      }
+    });
 
     dispatch({
       type: types.set_rows,
