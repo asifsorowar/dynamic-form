@@ -33,7 +33,7 @@ const List = () => {
           .toLowerCase()
           .startsWith(searchValue.toLowerCase());
 
-        if (columns[column].searchable && isMatched) return true;
+        if (columns[column]?.searchable && isMatched) return true;
       }
     });
 
